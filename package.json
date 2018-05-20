@@ -1,10 +1,11 @@
 {
-  "name": "ts-react-parcel",
-  "version": "1.2.0",
-  "description": "Typescript with React, using parcel bundler",
+  "name": "hearthis-player",
+  "version": "1.0.0",
+  "description": "Minimal music player using the hearthis.at API",
+  "author": "Luke Travis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/emaren84/ts-react-parcel"
+    "url": "https://github.com/Apostrophii/hearthis-player.git"
   },
   "main": "index.js",
   "scripts": {
@@ -30,13 +31,6 @@
       "**/__tests__/*.(test|spec).(ts|tsx|js)"
     ]
   },
-  "keywords": [
-    "Typescript",
-    "React",
-    "Parcel"
-  ],
-  "author": "Ahn Dohyung",
-  "license": "MIT",
   "dependencies": {
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
