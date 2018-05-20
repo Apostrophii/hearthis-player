@@ -14,6 +14,12 @@ export interface SetVolumeAction extends Action {
   level: number;
 }
 
+export function fetchArtists(): Action {
+  return {
+    type: types.FETCH_ARTISTS,
+  };
+}
+
 export function selectArtist(artist: Artist): SelectArtistAction {
   return {
     type: types.SELECT_ARTIST,
@@ -24,6 +30,12 @@ export function selectArtist(artist: Artist): SelectArtistAction {
 export function deselectArtist(): Action {
   return {
     type: types.DESELECT_ARTIST,
+  };
+}
+
+export function fetchTracks(): Action {
+  return {
+    type: types.FETCH_TRACKS,
   };
 }
 

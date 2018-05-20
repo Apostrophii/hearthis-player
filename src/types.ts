@@ -1,5 +1,7 @@
+export const FETCH_ARTISTS = 'FETCH_ARTISTS';
 export const SELECT_ARTIST = 'SELECT_ARTIST';
 export const DESELECT_ARTIST = 'DESELECT_ARTIST';
+export const FETCH_TRACKS = 'FETCH_TRACKS';
 export const SELECT_TRACK = 'SELECT_TRACK';
 export const DESELECT_TRACK = 'DESELECT_TRACK';
 export const PLAY_TRACK = 'PLAY_TRACK';

@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware, compose, Middleware } from 'redux';
 import reducers from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import reduxSaga from 'redux-saga';
+import sagas from './sagas';
 
 declare global {
   interface Window {
@@ -9,9 +11,11 @@ declare global {
   }
 }
 
+const sagaMiddleware = reduxSaga();
+
 const initialState = {};
 const enhancers = [];
-const middleware: Middleware<any, any, any>[] = [];
+const middleware = [sagaMiddleware];
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
@@ -25,12 +29,18 @@ const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
 
 // Support HMR
 const store = (() => {
-  if (!window.store) {
-    window.store = createStore(reducers, initialState, composedEnhancers);
-  } else if (process.env.NODE_ENV === 'development') {
-    window.store.replaceReducer(reducers);
+  if (process.env.NODE_ENV === 'development' && window.store) {
+    return window.store;
   }
-  return window.store;
+
+  const store = createStore(reducers, initialState, composedEnhancers);
+
+  if (process.env.NODE_ENV === 'development') {
+    window.store = store;
+  }
+
+  sagaMiddleware.run(sagas);
+  return store;
 })();
 
 export default store;

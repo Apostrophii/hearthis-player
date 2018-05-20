@@ -2,3 +2,5 @@
 
 * React + Typescript + Parcel boilerplate from github.com/adhrinae/ts-react-parcel
 * Redux
+* Aphrodite
+* Saga
