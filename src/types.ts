@@ -1,0 +1,7 @@
+export const SELECT_ARTIST = 'SELECT_ARTIST';
+export const DESELECT_ARTIST = 'DESELECT_ARTIST';
+export const SELECT_TRACK = 'SELECT_TRACK';
+export const DESELECT_TRACK = 'DESELECT_TRACK';
+export const PLAY_TRACK = 'PLAY_TRACK';
+export const PAUSE_TRACK = 'PAUSE_TRACK';
+export const SET_VOLUME = 'SET_VOLUME';
