@@ -32,12 +32,17 @@
     ]
   },
   "dependencies": {
+    "@types/aphrodite": "^0.5.10",
+    "@types/react-redux": "^6.0.0",
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
+    "aphrodite": "^2.2.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "redux-devtools-extension": "^2.13.2"
+    "redux-devtools-extension": "^2.13.2",
+    "redux-saga": "^0.16.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.9",

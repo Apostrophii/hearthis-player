@@ -3,29 +3,29 @@ import * as types from './types';
 import { Artist, Track } from './api-interfaces';
 import { State } from './state';
 
-const selectedArtist: Reducer<Artist> = (state = undefined, action) => {
+const selectedArtist: Reducer<State['selectedArtist']> = (state = null, action) => {
   switch (action.type) {
     case types.SELECT_ARTIST:
       return action.artist;
     case types.DESELECT_ARTIST:
-      return undefined;
+      return null;
     default:
       return state;
   }
 };
 
-const selectedTrack: Reducer<Track> = (state = undefined, action) => {
+const selectedTrack: Reducer<State['selectedTrack']> = (state = null, action) => {
   switch (action.type) {
     case types.SELECT_TRACK:
       return action.track;
     case types.DESELECT_TRACK:
-      return undefined;
+      return null;
     default:
       return state;
   }
 };
 
-const currentlyPlayingTrack: Reducer<boolean> = (state = false, action) => {
+const currentlyPlayingTrack: Reducer<State['currentlyPlayingTrack']> = (state = false, action) => {
   switch (action.type) {
     case types.PLAY_TRACK:
       return true;
@@ -36,7 +36,7 @@ const currentlyPlayingTrack: Reducer<boolean> = (state = false, action) => {
   }
 };
 
-const trackVolume: Reducer<number> = (state = 1, action) => {
+const trackVolume: Reducer<State['trackVolume']> = (state = 1, action) => {
   switch (action.type) {
     case types.SET_VOLUME:
       return action.level;

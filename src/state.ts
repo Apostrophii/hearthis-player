@@ -1,15 +1,15 @@
 import { Artist, Track } from './api-interfaces';
 
 export interface State {
-  selectedArtist?: Artist;
-  selectedTrack?: Track;
+  selectedArtist: Artist | null;
+  selectedTrack: Track | null;
   currentlyPlayingTrack: boolean;
   trackVolume: number;
 }
 
 export const initialState: State = {
-  selectedArtist: undefined,
-  selectedTrack: undefined,
+  selectedArtist: null,
+  selectedTrack: null,
   currentlyPlayingTrack: false,
   trackVolume: 1,
 };
