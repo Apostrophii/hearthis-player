@@ -7,7 +7,8 @@
     "function-name": false,
     "jsx-no-lambda": false,
     "object-shorthand-properties-first": false,
-    "no-else-after-return": false
+    "no-else-after-return": false,
+    "import-name": false
   },
   "rulesDirectory": []
 }

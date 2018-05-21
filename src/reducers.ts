@@ -40,7 +40,9 @@ const selectedArtist: Reducer<State['selectedArtist']> = (state = null, action) 
 const tracks: Reducer<State['tracks']> = (state = [], action) => {
   switch (action.type) {
     case types.TRACKS_RECEIVED:
-      return action.tracks;
+      return state.concat(action.tracks);
+    case types.CLEAR_TRACKS:
+      return [];
     default:
       return state;
   }
@@ -52,7 +54,7 @@ const nextTracksPage: Reducer<State['nextTracksPage']> = (state = 0, action) => 
       return state + 1;
     case types.SELECT_ARTIST:
     case types.DESELECT_ARTIST:
-      return 1;
+      return 0;
     default:
       return state;
   }
@@ -71,8 +73,10 @@ const selectedTrack: Reducer<State['selectedTrack']> = (state = null, action) =>
 
 const currentlyPlayingTrack: Reducer<State['currentlyPlayingTrack']> = (state = false, action) => {
   switch (action.type) {
+    case types.SELECT_TRACK:
     case types.PLAY_TRACK:
       return true;
+    case types.DESELECT_TRACK:
     case types.PAUSE_TRACK:
       return false;
     default:
@@ -80,10 +84,23 @@ const currentlyPlayingTrack: Reducer<State['currentlyPlayingTrack']> = (state = 
   }
 };
 
-const trackVolume: Reducer<State['trackVolume']> = (state = 1, action) => {
+const artistPalette: Reducer<State['artistPalette']> = (state = null, action) => {
   switch (action.type) {
-    case types.SET_VOLUME:
-      return action.level;
+    case types.SET_ARTIST_PALETTE:
+      return action.palette;
+    case types.DESELECT_ARTIST:
+      return null;
+    default:
+      return state;
+  }
+};
+
+const trackPalette: Reducer<State['trackPalette']> = (state = null, action) => {
+  switch (action.type) {
+    case types.SET_TRACK_PALETTE:
+      return action.palette;
+    case types.DESELECT_TRACK:
+      return null;
     default:
       return state;
   }
@@ -97,7 +114,8 @@ const reducers = combineReducers<State>({
   nextTracksPage,
   selectedTrack,
   currentlyPlayingTrack,
-  trackVolume,
+  artistPalette,
+  trackPalette,
 });
 
 export default reducers;

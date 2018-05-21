@@ -4,3 +4,5 @@
 * Redux
 * Aphrodite
 * Saga
+* React Infinite Scroller
+* node-vibrant

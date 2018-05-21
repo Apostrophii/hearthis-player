@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 import * as types from './types';
 import { Artist, Track } from './api-interfaces';
+import { Palette } from 'node-vibrant/lib/color';
 
 export interface ArtistsReceivedAction extends Action {
   artists: Artist[];
@@ -18,8 +19,8 @@ export interface SelectTrackAction extends Action {
   track: Track;
 }
 
-export interface SetVolumeAction extends Action {
-  level: number;
+export interface PaletteGeneratedAction extends Action {
+  palette: Palette;
 }
 
 export function fetchArtists(): Action {
@@ -74,6 +75,12 @@ export function deselectTrack(): Action {
   };
 }
 
+export function clearTracks(): Action {
+  return {
+    type: types.CLEAR_TRACKS,
+  };
+}
+
 export function playTrack(): Action {
   return {
     type: types.PLAY_TRACK,
@@ -86,9 +93,16 @@ export function pauseTrack(): Action {
   };
 }
 
-export function setVolume(level: number): SetVolumeAction {
+export function artistPaletteGenerated(palette: Palette): PaletteGeneratedAction {
   return {
-    type: types.SET_VOLUME,
-    level,
+    type: types.SET_ARTIST_PALETTE,
+    palette,
+  };
+}
+
+export function trackPaletteGenerated(palette: Palette): PaletteGeneratedAction {
+  return {
+    type: types.SET_TRACK_PALETTE,
+    palette,
   };
 }

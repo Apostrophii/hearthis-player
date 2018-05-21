@@ -1,4 +1,5 @@
 import { Artist, Track } from './api-interfaces';
+import { Palette } from 'node-vibrant/lib/color';
 
 export interface State {
   artists: Artist[];
@@ -8,7 +9,8 @@ export interface State {
   nextTracksPage: number;
   selectedTrack: Track | null;
   currentlyPlayingTrack: boolean;
-  trackVolume: number;
+  artistPalette: Palette | null;
+  trackPalette: Palette | null;
 }
 
 export const initialState: Partial<State> = {};

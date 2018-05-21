@@ -1,9 +1,17 @@
 import { takeEvery, select, put, call, all } from 'redux-saga/effects';
 import * as types from './types';
 import { Action } from 'redux';
-import { getNextArtistsPage, getNextTracksPage, getSelectedArtist } from './selectors';
-import { artistsReceived, tracksReceived } from './actions';
+import {
+  getNextArtistsPage,
+  getNextTracksPage,
+  getSelectedArtist,
+  getSelectedArtistImageUrl,
+  getSelectedTrackImageUrl,
+} from './selectors';
+import { artistsReceived, tracksReceived, clearTracks, artistPaletteGenerated, trackPaletteGenerated } from './actions';
 import { Artist, Track } from './api-interfaces';
+import { delay } from 'redux-saga';
+import Vibrant = require('node-vibrant');
 
 function* fetchPopularArtists() {
   const popularTracks: Track[] = yield call(fetchPopularTracks);
@@ -67,7 +75,29 @@ function* fetchTracksForSelectedArtist() {
   }
 }
 
+function* delayClearingTracks() {
+  yield delay(500);
+  yield put(clearTracks());
+}
+
+function* generateArtistPalette() {
+  const imageUrl = yield select(getSelectedArtistImageUrl);
+  // Use a CORS proxy so hearthis.at will play nice
+  const palette = yield new Vibrant(`https://cors.now.sh/${imageUrl}`).getPalette();
+  yield put(artistPaletteGenerated(palette));
+}
+
+function* generateTrackPalette() {
+  const imageUrl = yield select(getSelectedTrackImageUrl);
+  // Use a CORS proxy so hearthis.at will play nice
+  const palette = yield new Vibrant(`https://cors.now.sh/${imageUrl}`).getPalette();
+  yield put(trackPaletteGenerated(palette));
+}
+
 export default function* rootSaga() {
   yield takeEvery(types.FETCH_ARTISTS, fetchPopularArtists);
   yield takeEvery(types.FETCH_TRACKS, fetchTracksForSelectedArtist);
+  yield takeEvery(types.DESELECT_ARTIST, delayClearingTracks);
+  yield takeEvery(types.SELECT_ARTIST, generateArtistPalette);
+  yield takeEvery(types.SELECT_TRACK, generateTrackPalette);
 }
