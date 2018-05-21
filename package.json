@@ -10,26 +10,17 @@
   "main": "index.js",
   "scripts": {
     "develop": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --public-url '/'",
+    "build": "parcel build ./src/index.html --public-url '/hearthis-player'",
     "test": "jest",
     "test:watch": "jest --watch"
   },
   "jest": {
-    "setupFiles": [
-      "<rootDir>/config/test-shim.js",
-      "<rootDir>/config/test-setup.js"
-    ],
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
+    "setupFiles": ["<rootDir>/config/test-shim.js", "<rootDir>/config/test-setup.js"],
+    "moduleFileExtensions": ["ts", "tsx", "js"],
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/config/test-preprocessor.js"
     },
-    "testMatch": [
-      "**/__tests__/*.(test|spec).(ts|tsx|js)"
-    ]
+    "testMatch": ["**/__tests__/*.(test|spec).(ts|tsx|js)"]
   },
   "dependencies": {
     "@types/aphrodite": "^0.5.10",
