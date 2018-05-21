@@ -10,7 +10,7 @@
   "main": "index.js",
   "scripts": {
     "develop": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --public-url '/hearthis-player'",
+    "build": "parcel build ./src/index.html --public-url '/hearthis-player/'",
     "test": "jest",
     "test:watch": "jest --watch"
   },
