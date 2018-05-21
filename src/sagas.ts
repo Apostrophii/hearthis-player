@@ -7,8 +7,9 @@ import { Artist, Track } from './api-interfaces';
 
 function* fetchPopularArtists() {
   const popularTracks: Track[] = yield call(fetchPopularTracks);
+  // Wait for all artists (instead of handling as they return) to ensure that order is preserved
+  // (in case some API calls take longer than others)
   const trackArtists: Artist[] = yield all(popularTracks.map(track => call(fetchArtist, track.user.permalink)));
-  console.log(trackArtists);
   yield put(artistsReceived(trackArtists));
 }
 

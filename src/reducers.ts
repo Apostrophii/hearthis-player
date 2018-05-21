@@ -10,7 +10,7 @@ const artists: Reducer<State['artists']> = (state = [], action) => {
       // When adding more artists to the list we need to filter out duplicate artists
       // who may have shown up because they have more than one sufficiently popular track
       return allArtists.filter((artist, index, artists) => {
-        index === artists.findIndex(a => a.permalink === artist.permalink);
+        return index === artists.findIndex(a => a.permalink === artist.permalink);
       });
     default:
       return state;

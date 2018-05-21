@@ -14,7 +14,12 @@ interface DispatchProps {
 
 class Artists extends React.Component<StateProps & DispatchProps> {
   render() {
-    return <button onClick={() => this.props.fetchArtists()}>Fetch artist</button>;
+    return (
+      <div>
+        <button onClick={() => this.props.fetchArtists()}>Fetch artist</button>
+        {this.props.artists.map((artist, index) => <div key={index}>{artist.username}</div>)}
+      </div>
+    );
   }
 }
 
