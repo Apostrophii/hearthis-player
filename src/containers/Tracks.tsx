@@ -6,7 +6,7 @@ import { State } from '../state';
 import { Action, Dispatch } from 'redux';
 import { SelectTrackAction, fetchTracks, selectTrack } from '../actions';
 import Tile from '../components/Tile';
-import * as InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
 import { Track } from '../api-interfaces';
 import { getRbgFromPalette } from '../utils';
 

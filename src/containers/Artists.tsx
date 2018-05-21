@@ -6,7 +6,7 @@ import { State } from '../state';
 import { Action, Dispatch } from 'redux';
 import { fetchArtists, SelectArtistAction, selectArtist, deselectArtist } from '../actions';
 import Tile from '../components/Tile';
-import * as InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
 import { Artist } from '../api-interfaces';
 
 interface StateProps {
