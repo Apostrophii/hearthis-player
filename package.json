@@ -10,7 +10,9 @@
   "main": "index.js",
   "scripts": {
     "develop": "parcel ./src/index.html",
-    "build": "parcel build ./src/index.html --public-url '/hearthis-player/'",
+    "build": "parcel build ./src/index.html --public-url '/' --no-minify",
+    "deploy": "gh-pages -d dist",
+    "publish-gh": "yarn run build && yarn run deploy",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -29,6 +31,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-devtools-extension": "^2.13.2",
     "aphrodite": "^2.2.1",
+    "gh-pages": "^1.1.0",
     "node-vibrant": "^3.0.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
