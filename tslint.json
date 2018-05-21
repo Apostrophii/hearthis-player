@@ -6,7 +6,8 @@
     "variable-name": false,
     "function-name": false,
     "jsx-no-lambda": false,
-    "object-shorthand-properties-first": false
+    "object-shorthand-properties-first": false,
+    "no-else-after-return": false
   },
   "rulesDirectory": []
 }

@@ -5,12 +5,19 @@ import { State } from './state';
 
 const artists: Reducer<State['artists']> = (state = [], action) => {
   switch (action.type) {
+    case types.ARTISTS_RECEIVED:
+      const allArtists = state.concat(action.artists);
+      // When adding more artists to the list we need to filter out duplicate artists
+      // who may have shown up because they have more than one sufficiently popular track
+      return allArtists.filter((artist, index, artists) => {
+        index === artists.findIndex(a => a.permalink === artist.permalink);
+      });
     default:
       return state;
   }
 };
 
-const nextArtistsPage: Reducer<State['nextArtistsPage']> = (state = 1, action) => {
+const nextArtistsPage: Reducer<State['nextArtistsPage']> = (state = 0, action) => {
   switch (action.type) {
     case types.FETCH_ARTISTS:
       return state + 1;
@@ -32,12 +39,14 @@ const selectedArtist: Reducer<State['selectedArtist']> = (state = null, action) 
 
 const tracks: Reducer<State['tracks']> = (state = [], action) => {
   switch (action.type) {
+    case types.TRACKS_RECEIVED:
+      return action.tracks;
     default:
       return state;
   }
 };
 
-const nextTracksPage: Reducer<State['nextTracksPage']> = (state = 1, action) => {
+const nextTracksPage: Reducer<State['nextTracksPage']> = (state = 0, action) => {
   switch (action.type) {
     case types.FETCH_TRACKS:
       return state + 1;

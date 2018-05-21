@@ -2,8 +2,16 @@ import { Action } from 'redux';
 import * as types from './types';
 import { Artist, Track } from './api-interfaces';
 
+export interface ArtistsReceivedAction extends Action {
+  artists: Artist[];
+}
+
 export interface SelectArtistAction extends Action {
   artist: Artist;
+}
+
+export interface TracksReceivedAction extends Action {
+  tracks: Track[];
 }
 
 export interface SelectTrackAction extends Action {
@@ -17,6 +25,13 @@ export interface SetVolumeAction extends Action {
 export function fetchArtists(): Action {
   return {
     type: types.FETCH_ARTISTS,
+  };
+}
+
+export function artistsReceived(artists: Artist[]): ArtistsReceivedAction {
+  return {
+    type: types.ARTISTS_RECEIVED,
+    artists,
   };
 }
 
@@ -36,6 +51,13 @@ export function deselectArtist(): Action {
 export function fetchTracks(): Action {
   return {
     type: types.FETCH_TRACKS,
+  };
+}
+
+export function tracksReceived(tracks: Track[]): TracksReceivedAction {
+  return {
+    type: types.TRACKS_RECEIVED,
+    tracks,
   };
 }
 
